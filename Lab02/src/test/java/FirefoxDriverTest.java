@@ -130,19 +130,19 @@ public class FirefoxDriverTest {
             }
             Assert.assertNotNull(element);
         }
-//
-//        @After
-//        public void cleanUp(){
-//            log.info("Cleaning up the fields");
-//            driver.findElement(By.id("ap_customer_name")).clear();
-//            driver.findElement(By.id("ap_email")).clear();
-//            driver.findElement(By.id("ap_password")).clear();
-//            driver.findElement(By.id("ap_password_check")).clear();
-//        }
-//        @AfterClass
-//        public static void closeBrowser(){
-//            log.info("Closing website");
-//            driver.quit();
-//        }
+
+        @After
+        public void cleanUp(){
+            log.info("Cleaning up the fields");
+            driver.findElement(By.id("ap_customer_name")).clear();
+            driver.findElement(By.id("ap_email")).clear();
+            driver.findElement(By.id("ap_password")).clear();
+            driver.findElement(By.id("ap_password_check")).clear();
+        }
+        @AfterClass
+        public static void closeBrowser(){
+            log.info("Closing website");
+            driver.quit();
+        }
 }
 
