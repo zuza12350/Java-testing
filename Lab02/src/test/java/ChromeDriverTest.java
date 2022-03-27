@@ -43,6 +43,8 @@ public class ChromeDriverTest {
     }
     @Test
     public void bmiWithProvidedDataShouldDisplay1651ForWoman(){
+        log.info("Checking WOMAN checkbox");
+        driver.findElement(By.xpath("//*[@id=\"bmi-form\"]/label[1]/span")).click();
         log.info("Filling weight field");
         driver.findElement(By.id("bmi-weight")).sendKeys("50");
         log.info("Filling height field");
@@ -112,9 +114,9 @@ public class ChromeDriverTest {
         driver.findElement(By.id("bmi-weight")).clear();
         driver.findElement(By.id("bmi-height")).clear();
     }
-    @AfterClass
-    public static void closeBrowser(){
-        log.info("Closing website");
-        driver.quit();
-    }
+//    @AfterClass
+//    public static void closeBrowser(){
+//        log.info("Closing website");
+//        driver.quit();
+//    }
 }
