@@ -114,9 +114,9 @@ public class ChromeDriverTest {
         driver.findElement(By.id("bmi-weight")).clear();
         driver.findElement(By.id("bmi-height")).clear();
     }
-//    @AfterClass
-//    public static void closeBrowser(){
-//        log.info("Closing website");
-//        driver.quit();
-//    }
+    @AfterClass
+    public static void closeBrowser(){
+        log.info("Closing website");
+        driver.quit();
+    }
 }
