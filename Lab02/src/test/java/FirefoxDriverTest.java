@@ -18,26 +18,6 @@ public class FirefoxDriverTest {
             log.info("Going to website");
             driver.get("https://www.amazon.pl/ap/register?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.pl%2F%3F_encoding%3DUTF8%26ref_%3Dnav_custrec_newcust&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=plflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&");
         }
-
-        @Test
-        public void validUserCredentialsShouldPassTheForm(){
-            log.info("Fill in field username");
-            driver.findElement(By.id("ap_customer_name")).sendKeys("Annie");
-            log.info("Fill in field email");
-            driver.findElement(By.id("ap_email")).sendKeys("exampleEmailNumber2@gmail.com");
-            log.info("Fill in field password");
-            driver.findElement(By.id("ap_password")).sendKeys("example123@!");
-            log.info("Fill in field password again");
-            driver.findElement(By.id("ap_password_check")).sendKeys("example123@!");
-            log.info("Clicking confirm");
-            driver.findElement(By.id("continue")).click();
-            try{
-                log.info("Getting element");
-                element = driver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div/div/div/div/div/div[1]/span"));
-            }catch (Exception e){
-            }
-            Assert.assertNotNull(element);
-        }
         @Test
         public void badlyRepeatedPasswordShouldNotLetTheFormPass(){
             log.info("Fill in field username");
