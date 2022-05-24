@@ -36,10 +36,9 @@ class TestRichPersonAccount:
         rich_account.withdraw(withdraw)
         assert rich_account.balance == expected
 
-    def test_subtract_vat_eight_rich_account(self):
-        rich = BankAccount(10000)
-        rich.subtract_vat_eight()
-        assert rich.balance == 9200
+    def test_subtract_vat_eight_rich_account(self,rich_account):
+        rich_account.subtract_vat_eight()
+        assert rich_account.balance == 9200
 
 
 class TestPoorPersonAccount:
@@ -75,10 +74,9 @@ class TestPoorPersonAccount:
         poor_account.withdraw(withdraw)
         assert poor_account.balance == expected
 
-    def test_subtract_vat_eight_for_poor_account(self):
-        poor = BankAccount(100)
+    def test_subtract_vat_eight_for_poor_account(self,poor_account):
         with pytest.raises(NotEnoughCash):
-            poor.subtract_vat_eight()
+            poor_account.subtract_vat_eight()
 
 
 class TestEmptyAccount:
@@ -107,12 +105,10 @@ class TestEmptyAccount:
         empty_account.withdraw(withdraw)
         assert empty_account.balance == expected
 
-    def test_withdraw_empty_account(self):
-        empty = BankAccount()
+    def test_withdraw_empty_account(self,empty_account):
         with pytest.raises(NotEnoughCash):
-            empty.withdraw(100)
+            empty_account.withdraw(100)
 
-    def test_subtract_vat_eight_for_empty_account(self):
-        empty = BankAccount()
+    def test_subtract_vat_eight_for_empty_account(self,empty_account):
         with pytest.raises(NotEnoughCash):
-            empty.subtract_vat_eight()
+            empty_account.subtract_vat_eight()
