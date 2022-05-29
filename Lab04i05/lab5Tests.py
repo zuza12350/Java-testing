@@ -1,5 +1,15 @@
+import json
+
 import pytest
 from bank import BankAccount, NotEnoughCash
+
+
+def read_file(string, kind):
+    f = open(string + '.json')
+    data = json.load(f)
+    data1 = data[kind]
+    f.close()
+    return data1
 
 
 class TestRichPersonAccount:
@@ -7,6 +17,8 @@ class TestRichPersonAccount:
     @pytest.fixture
     def rich_account(self):
         return BankAccount(10000)
+
+    data = read_file("test_data", "data_rich")
 
     def test_initial_amount_of_rich_account(self, rich_account):
         assert rich_account.balance == 10000
@@ -27,10 +39,7 @@ class TestRichPersonAccount:
         rich_account.deposit(deposit)
         assert rich_account.balance == expected
 
-    @pytest.mark.parametrize("deposit,withdraw,expected", [
-        (100, 50, 10050),
-        (200, 2, 10198),
-    ])
+    @pytest.mark.parametrize("deposit,withdraw,expected", data)
     def test_both_transactions_for_rich_person(self, rich_account, deposit, withdraw, expected):
         rich_account.deposit(deposit)
         rich_account.withdraw(withdraw)
@@ -45,6 +54,8 @@ class TestPoorPersonAccount:
     @pytest.fixture
     def poor_account(self):
         return BankAccount(100)
+
+    data = read_file("test_data", "data_poor")
 
     def test_initial_amount_of_poor_account(self, poor_account):
         assert poor_account.balance == 100
@@ -65,10 +76,7 @@ class TestPoorPersonAccount:
         poor_account.deposit(deposit)
         assert poor_account.balance == expected
 
-    @pytest.mark.parametrize("deposit,withdraw,expected", [
-        (100, 50, 150),
-        (200, 2, 298),
-    ])
+    @pytest.mark.parametrize("deposit,withdraw,expected", data)
     def test_both_transactions_for_poor_person(self, poor_account, deposit, withdraw, expected):
         poor_account.deposit(deposit)
         poor_account.withdraw(withdraw)
@@ -85,6 +93,8 @@ class TestEmptyAccount:
     def empty_account(self):
         return BankAccount()
 
+    data = read_file("test_data", "data_empty")
+
     def test_initial_amount_of_empty_account(self, empty_account):
         assert empty_account.balance == 0
 
@@ -96,16 +106,13 @@ class TestEmptyAccount:
         empty_account.deposit(deposit)
         assert empty_account.balance == expected
 
-    @pytest.mark.parametrize("deposit,withdraw,expected", [
-        (100, 50, 50),
-        (200, 2, 198),
-    ])
+    @pytest.mark.parametrize("deposit,withdraw,expected", data)
     def test_both_transactions_for_poor_person(self, empty_account, deposit, withdraw, expected):
         empty_account.deposit(deposit)
         empty_account.withdraw(withdraw)
         assert empty_account.balance == expected
 
-    def test_withdraw_empty_account(self,empty_account):
+    def test_withdraw_empty_account(self, empty_account):
         with pytest.raises(NotEnoughCash):
             empty_account.withdraw(100)
 
