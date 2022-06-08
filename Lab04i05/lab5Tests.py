@@ -13,6 +13,14 @@ def read_file(string, kind):
 
 
 class TestRichPersonAccount:
+    @classmethod
+    def setup_class(cls):
+
+        print('\n----setup tests----')
+
+    @classmethod
+    def teardown_class(cls):
+        print('\n----teardown tests----')
 
     @pytest.fixture
     def rich_account(self):
@@ -51,6 +59,14 @@ class TestRichPersonAccount:
 
 
 class TestPoorPersonAccount:
+    @classmethod
+    def setup_class(cls):
+        print('\n----setup tests----')
+
+    @classmethod
+    def teardown_class(cls):
+        print('\n----teardown tests----')
+
     @pytest.fixture
     def poor_account(self):
         return BankAccount(100)
@@ -88,6 +104,13 @@ class TestPoorPersonAccount:
 
 
 class TestEmptyAccount:
+    @classmethod
+    def setup_class(cls):
+        print('\n----setup tests----')
+
+    @classmethod
+    def teardown_class(cls):
+        print('\n----teardown tests----')
 
     @pytest.fixture
     def empty_account(self):
